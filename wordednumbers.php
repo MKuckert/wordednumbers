@@ -3,17 +3,17 @@
 class WordedNumbers {
 	
 	/**
-	 * @var array Namen für einzelne Zahlenwerte
+	 * @var array Namen fÃ¼r einzelne Zahlenwerte
 	 */
 	protected $_names=array();
 	
 	/**
-	 * @var array Namen für einzelne Stellen
+	 * @var array Namen fÃ¼r einzelne Stellen
 	 */
 	protected $_digitNames=array();
 	
 	/**
-	 * @var array Namen für kombinierte Zahlenwerte
+	 * @var array Namen fÃ¼r kombinierte Zahlenwerte
 	 */
 	protected $_combNames=array();
 	
@@ -55,18 +55,18 @@ class WordedNumbers {
 	}
 	
 	/**
-	 * Gibt eine einzelne benannte Zahl zurück.
+	 * Gibt eine einzelne benannte Zahl zurÃ¼ck.
 	 * 
 	 * @return string
 	 * @param integer
 	 */
 	public function getNumber($num) {
-		// Direkte Übereinstimmung
+		// Direkte Ãœbereinstimmung
 		if(isset($this->_names[$num])) {
 			return $this->_names[$num];
 		}
 		
-		// Einzelne Namen für einzelne Stellen
+		// Einzelne Namen fÃ¼r einzelne Stellen
 		$parts=array();
 		for($i=0, $n=log($num, 10); $i<=$n; $i++) {
 			$lastPart=$num%pow(10, $i+1);
@@ -90,7 +90,7 @@ class WordedNumbers {
 				continue;
 			}
 			
-			// Kombination mit höheren Stellen
+			// Kombination mit hÃ¶heren Stellen
 			$cleanedDigit=pow(10, floor(log($digit, 10)));
 			$value=$digit/$cleanedDigit;
 			
@@ -118,7 +118,7 @@ class WordedNumbers {
 			$parts[0]=$tmp;
 		}
 		
-		// Trenner zwischen Einer- und Zehnerstelle einfügen
+		// Trenner zwischen Einer- und Zehnerstelle einfÃ¼gen
 		$index=$this->_swapUnitPositionAndDecade ? 0 : 1;
 		if(isset($parts[$index]) and in_array(array_search($parts[$index], $this->_names), $this->_namesRequiringSeparator) and !empty($parts[$index])) {
 			array_splice($parts, $index+1, 0, array($this->_separator));
@@ -131,15 +131,15 @@ class WordedNumbers {
 }
 
 $locales=array(
-	// Parameter für deutsche Sprachen
+	// Parameter fÃ¼r deutsche Sprachen
 	'de' => array(
 		'names' => array(
-			1 => 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn',
-			'elf', 'zwölf', 16=> 'sechzehn', 'siebzehn',
+			1 => 'eins', 'zwei', 'drei', 'vier', 'fÃ¼nf', 'sechs', 'sieben', 'acht', 'neun', 'zehn',
+			'elf', 'zwÃ¶lf', 16=> 'sechzehn', 'siebzehn',
 			20 => 'zwanzig',
-			30 => 'dreißig',
+			30 => 'dreiÃŸig',
 			40 => 'vierzig',
-			50 => 'fünfzig',
+			50 => 'fÃ¼nfzig',
 			60 => 'sechzig',
 			70 => 'siebzig',
 			80 => 'achtzig',
@@ -154,7 +154,7 @@ $locales=array(
 		'separator' => 'und',
 		'swapUnitPositionAndDecade' => true
 	),
-	// Parameter für englische Sprachen
+	// Parameter fÃ¼r englische Sprachen
 	'en' => array(
 		'names' => array(
 			1 => 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
